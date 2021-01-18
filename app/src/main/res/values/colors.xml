@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/yellow</color>
+    <color name="colorPrimaryDark">@color/darkgray</color>
+    <color name="colorAccent">@color/darkgray2</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="darkgray">#494949</color>
+    <color name="darkgray1">#676767</color>
+    <color name="darkgray2">#858585</color>
+    <color name="navcolor">#D5EF3A3A</color>
+    <color name="highlights">#F57F17</color>
+    <color name="lightwhite">#E6E6E6</color>
+    <color name="yellow">#FFAB40</color>
+    <color name="controlNormalNormal">#ffffff</color>
+</resources>
