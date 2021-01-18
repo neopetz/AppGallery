@@ -7,8 +7,7 @@
     android:background="@drawable/bg2"
     tools:context=".Login">
 
-
-
+        <!-- COMMENTTTTTTTTTTTTTTTTTTT -->
 
     <com.agrawalsuneet.dotsloader.loaders.LazyLoader
         android:id="@+id/progressBar"
