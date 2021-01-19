@@ -12,7 +12,6 @@
         android:id="@+id/bottomNavMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         app:cnb_menuResource="@menu/navmenu"
         android:layout_alignParentBottom="true"
         app:cnb_unselectedColor="@color/darkgray2"

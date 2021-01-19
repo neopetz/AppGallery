@@ -32,5 +32,14 @@
         Nam augue lectus, fermentum et fringilla at, porta vel nisi. In varius libero dui, non condimentum mauris viverra nec.
         Vestibulum in lorem lectus. Nunc a nisi id lorem sagittis cursus. Donec pulvinar nisi ipsum, ut tempor felis suscipit sit amet.</string>
 
+    <string name="username">Username</string>
+    <string name="Email">Email</string>
+    <string name="phone">Phone Number</string>
+    <string name="address">Address</string>
+    <string name="fullName">Full Name</string>
+    <string name="bdate">1/1/1990</string>
+    <string name="Fname">Full Name</string>
+    <string name="bsit">By: BSIT TEAMMANG</string>
+
 </resources>
 

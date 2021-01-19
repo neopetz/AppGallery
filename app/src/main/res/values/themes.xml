@@ -2,8 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.Gallery" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
+
+   <!-- <style name="Theme.Gallery" parent="Theme.MaterialComponents.DayNight.NoActionBar"> -->
+
+
         <item name="colorPrimary">#FF9E80</item>
-        <item name="android:textColorPrimary">@color/black</item>
+      <!--  <item name="android:textColorPrimary">@color/black</item> -->
         <item name="colorPrimaryVariant">#FFB75B</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->

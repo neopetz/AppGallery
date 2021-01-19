@@ -36,7 +36,7 @@ public class register extends AppCompatActivity implements View.OnClickListener 
     private TextView btnRegisterUser;
     private EditText textFullName, textEmail, textPassword, textPasswordConfirm;
     private FirebaseAuth mAuth;
-    String valFullName, valEmail, valPassword, valConfirmPassword;
+    String valFullName, valEmail, valPassword, valConfirmPassword,valUsername="none",valAddress="none",valNumber="none";
     LazyLoader lazyLoader;
     Timer timer;
 
@@ -129,7 +129,7 @@ public class register extends AppCompatActivity implements View.OnClickListener 
                 .addOnCompleteListener(task -> {
 
                     if (task.isSuccessful()) {
-                        User user = new User(valFullName, valEmail);
+                        User user = new User(valFullName, valEmail, valUsername, valAddress, valNumber);
 
                         FirebaseDatabase.getInstance().getReference("Users")
                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
