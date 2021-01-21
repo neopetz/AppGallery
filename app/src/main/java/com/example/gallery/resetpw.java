@@ -13,8 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.agrawalsuneet.dotsloader.loaders.CircularDotsLoader;
 import com.agrawalsuneet.dotsloader.loaders.LazyLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -44,9 +42,7 @@ public class resetpw extends AppCompatActivity {
 
         textEmail = findViewById(R.id.textEmail);
         Send = findViewById(R.id.Send);
-
         auth = FirebaseAuth.getInstance();
-
         Send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,8 +50,6 @@ public class resetpw extends AppCompatActivity {
 
             }
         });
-
-
 
         backLogin = findViewById(R.id.back);
         backLOGIN();

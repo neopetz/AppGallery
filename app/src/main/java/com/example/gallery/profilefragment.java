@@ -1,9 +1,11 @@
 package com.example.gallery;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -12,9 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,7 +32,7 @@ import com.google.firebase.storage.StorageReference;
 
 public class profilefragment extends Fragment {
 
-    private Button LogOut;
+    private Button LogOut, btnUpdate;
     private TextView ViewFullName;
     private TextView ViewEmail, ViewUsername, ViewNumber, ViewAddress;
     private FirebaseUser user;
@@ -36,6 +41,7 @@ public class profilefragment extends Fragment {
     private DatabaseReference db;
     private StorageReference str;
     private static final int pick = 2;
+
 
 
      @Override
@@ -49,7 +55,6 @@ public class profilefragment extends Fragment {
         ViewUsername = view.findViewById(R.id.ViewUsername);
         ViewAddress = view.findViewById(R.id.ViewAddress);
         ViewNumber = view.findViewById(R.id.ViewNumber);
-
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
         userID = user.getUid();
@@ -59,22 +64,37 @@ public class profilefragment extends Fragment {
 
         accountInformation();
 
-
-
-
          LogOut = view.findViewById(R.id.buttonSignOut);
          LogOut.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
                  FirebaseAuth.getInstance().signOut();
-                 startActivity(new Intent(getActivity(),Login.class));
+                 Intent intent = new Intent(getActivity(),Login.class);
+                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);//makesure user cant go back
+                 startActivity(intent);
              }
-         });return view;
+        });
+
+
+
+
+             btnUpdate=view.findViewById(R.id.editProfile);
+            btnUpdate.setOnClickListener(new View.OnClickListener(){
+            @Override
+                 public void onClick(View v) {
+                startActivity(new Intent(getActivity(), Editprofile.class));
+               
+            }
+         });
+
+        return view;
 
      }
 
+
+
     private void accountInformation(){
-         reference.child(userID).child("Account").addListenerForSingleValueEvent(new ValueEventListener() {
+         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
              @Override
              public void onDataChange(@NonNull DataSnapshot snapshot) {
                  User userProfile = snapshot.getValue(User.class);
@@ -108,8 +128,5 @@ public class profilefragment extends Fragment {
     }
 
 
-
-
-
-
+    
 }

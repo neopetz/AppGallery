@@ -7,7 +7,7 @@
 
 
         <item name="colorPrimary">#FF9E80</item>
-      <!--  <item name="android:textColorPrimary">@color/black</item> -->
+        <item name="android:textColorPrimary">@color/black</item> -->
         <item name="colorPrimaryVariant">#FFB75B</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->

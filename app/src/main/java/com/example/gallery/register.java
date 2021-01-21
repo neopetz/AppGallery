@@ -36,7 +36,7 @@ public class register extends AppCompatActivity implements View.OnClickListener 
     private TextView btnRegisterUser;
     private EditText textFullName, textEmail, textPassword, textPasswordConfirm;
     private FirebaseAuth mAuth;
-    String valFullName, valEmail, valPassword, valConfirmPassword,valUsername="none",valAddress="none",valNumber="none";
+    String valFullName, valEmail, valPassword, valConfirmPassword,valUsername="none",valAddress="none",valNumber="none", myImage="https://firebasestorage.googleapis.com/v0/b/auth-12c84.appspot.com/o/pic.png?alt=media&token=c61beb24-7981-4de0-a8da-48690000b84b";
     LazyLoader lazyLoader;
     Timer timer;
 
@@ -52,7 +52,6 @@ public class register extends AppCompatActivity implements View.OnClickListener 
         LazyLoader loader = new LazyLoader(this, 30, 20, ContextCompat.getColor(this, R.color.loader_selected),
                 ContextCompat.getColor(this, R.color.loader_selected),
                 ContextCompat.getColor(this, R.color.loader_selected));
-
         loader.setInterpolator(new LinearInterpolator());
         lazyLoader.addView(loader);
 
@@ -129,7 +128,7 @@ public class register extends AppCompatActivity implements View.OnClickListener 
                 .addOnCompleteListener(task -> {
 
                     if (task.isSuccessful()) {
-                        User user = new User(valFullName, valEmail, valUsername, valAddress, valNumber);
+                        User user = new User(valFullName, valEmail, valUsername, valAddress, valNumber, myImage);
 
                         FirebaseDatabase.getInstance().getReference("Users")
                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

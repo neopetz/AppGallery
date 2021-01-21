@@ -75,9 +75,9 @@ public class Login extends AppCompatActivity implements  View.OnClickListener{
                 userLogin();
                 break;
 
-
         }
     }
+
 
     private void userLogin() {
         String valEmail = textEmail.getText().toString().trim();
@@ -103,10 +103,7 @@ public class Login extends AppCompatActivity implements  View.OnClickListener{
             textPassword.requestFocus();
             return;
         }
-
-
         lazyLoader.setVisibility(View.VISIBLE);
-
         mAuth.signInWithEmailAndPassword(valEmail,valPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -114,19 +111,16 @@ public class Login extends AppCompatActivity implements  View.OnClickListener{
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                     if (user.isEmailVerified()) {
-
                         startActivity(new Intent(Login.this, HomeGallery.class));
+                        finish();
                     }else{
                         user.sendEmailVerification();
                         Toast.makeText(Login.this,"Check your email to verify your account!",Toast.LENGTH_LONG).show();
-                        lazyLoader.setVisibility(View.GONE);
                     }
-
                 }else{
                     Toast.makeText(Login.this,"Email or Password did not match!",Toast.LENGTH_LONG).show();
-                    lazyLoader.setVisibility(View.GONE);
                 }
-
+                lazyLoader.setVisibility(View.GONE);
 
 
             }

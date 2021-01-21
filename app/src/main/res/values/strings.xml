@@ -40,6 +40,12 @@
     <string name="bdate">1/1/1990</string>
     <string name="Fname">Full Name</string>
     <string name="bsit">By: BSIT TEAMMANG</string>
+    <string name="editProf">Edit Profile</string>
+    <string name="changedp">Change Display Picture</string>
+    <string name="updateprof">Update your profile</string>
+    <string name="update">Update</string>
+    <string name="changepw">Change Password</string>
+
 
 </resources>
 
