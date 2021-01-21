@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class profilefragment extends Fragment {
 
@@ -38,9 +39,8 @@ public class profilefragment extends Fragment {
     private FirebaseUser user;
     private DatabaseReference reference;
     private String userID;
-    private DatabaseReference db;
-    private StorageReference str;
-    private static final int pick = 2;
+    private ImageView changedp;
+
 
 
 
@@ -55,12 +55,11 @@ public class profilefragment extends Fragment {
         ViewUsername = view.findViewById(R.id.ViewUsername);
         ViewAddress = view.findViewById(R.id.ViewAddress);
         ViewNumber = view.findViewById(R.id.ViewNumber);
+        changedp = view.findViewById(R.id.uploadProfile);
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
         userID = user.getUid();
 
-        db = FirebaseDatabase.getInstance().getReference().child("Image");
-        str = FirebaseStorage.getInstance().getReference().child("Images");
 
         accountInformation();
 
@@ -74,6 +73,31 @@ public class profilefragment extends Fragment {
                  startActivity(intent);
              }
         });
+
+         reference= FirebaseDatabase.getInstance().getReference("Users");
+         user= FirebaseAuth.getInstance().getCurrentUser();
+         userID= user.getUid();
+
+
+
+         reference.child(userID).addValueEventListener(new ValueEventListener() {
+             @Override
+             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                 String image1= datasnapshot.child("myImage").getValue().toString();
+                 Picasso.with(getActivity())
+                         .load(image1)
+                         .resize(100, 100)
+                         .centerCrop()
+                         .into(changedp);
+             }
+             @Override
+             public void onCancelled(@NonNull DatabaseError error) {
+
+             }
+         });
+
+
+
 
 
 

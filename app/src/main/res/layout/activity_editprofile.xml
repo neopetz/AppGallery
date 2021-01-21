@@ -11,21 +11,23 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
         android:fontFamily="@font/proximar"
         android:text="@string/updateprof"
         android:textColor="#B0000000"
         android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.083" />
 
     <EditText
         android:id="@+id/updatefName"
         android:layout_width="259dp"
         android:layout_height="47dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
+        android:autofillHints=""
         android:background="@drawable/c_input"
         android:drawableStart="@drawable/c_fname"
         android:drawablePadding="5dp"
@@ -37,10 +39,12 @@
         android:paddingEnd="8dp"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/changedp"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.002" />
 
     <EditText
         android:id="@+id/updateUsername"
@@ -58,9 +62,11 @@
         android:paddingEnd="8dp"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/updatefName" />
+        app:layout_constraintTop_toBottomOf="@+id/updatefName"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/updateEmail"
@@ -78,9 +84,11 @@
         android:paddingEnd="8dp"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/updateUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/updateUsername"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/updateAddress"
@@ -98,23 +106,28 @@
         android:paddingEnd="8dp"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/updateEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/updateEmail"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+
         android:backgroundTint="#40C58C"
         android:fontFamily="@font/proximar"
         android:text="@string/update"
         android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/updateAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/updateAddress"
+        app:layout_constraintVertical_bias="0.072" />
 
     <Button
         android:id="@+id/btnchangepw"
@@ -124,19 +137,23 @@
         android:fontFamily="@font/proximar"
         android:text="@string/changepw"
         android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnUpdate" />
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdate"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageDP"
-        android:layout_width="148dp"
-        android:layout_height="137dp"
-        android:layout_marginTop="68dp"
+        android:layout_width="109dp"
+        android:layout_height="81dp"
         android:src="@drawable/ic_fullname_focused"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintVertical_bias="0.066" />
 
     <TextView
         android:id="@+id/changedp"
@@ -147,9 +164,12 @@
         android:text="@string/changedp"
         android:textColor="@color/textColor"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageDP" />
+        app:layout_constraintTop_toBottomOf="@+id/imageDP"
+        app:layout_constraintVertical_bias="0.017" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

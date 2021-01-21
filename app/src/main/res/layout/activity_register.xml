@@ -12,14 +12,15 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
         android:fontFamily="@font/proximar"
         android:text="Create your Account"
         android:textColor="#B0000000"
         android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.217" />
 
     <EditText
         android:id="@+id/inputfullname"
@@ -50,16 +51,18 @@
         android:drawableStart="@drawable/ic_email"
         android:drawablePadding="5dp"
         android:ems="10"
-        android:textColor="@color/colorPrimaryDark"
         android:fontFamily="@font/proximar"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputfullname" />
+        app:layout_constraintTop_toBottomOf="@+id/inputfullname"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/inputpw"
@@ -76,9 +79,11 @@
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputemail" />
+        app:layout_constraintTop_toBottomOf="@+id/inputemail"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/inputconfirmpw"
@@ -91,14 +96,16 @@
         android:ems="10"
         android:fontFamily="@font/proximar"
         android:hint="@string/confirmpw"
-        android:textColor="@color/colorPrimaryDark"
         android:inputType="textPassword"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputpw" />
+        app:layout_constraintTop_toBottomOf="@+id/inputpw"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/Register"
@@ -112,9 +119,11 @@
         android:textColor="@color/white"
         android:textSize="14sp"
         app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputconfirmpw" />
+        app:layout_constraintTop_toBottomOf="@+id/inputconfirmpw"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.agrawalsuneet.dotsloader.loaders.LazyLoader
         android:id="@+id/progressBar"

@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ public class Editprofile extends AppCompatActivity{
     private DatabaseReference reference;
     private String userID;
     private FirebaseUser user;
+    private EditText inputEmail, inputName, inputAddress, inputUsername;
 
 
 
@@ -48,16 +50,22 @@ public class Editprofile extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editprofile);
-        reference= FirebaseDatabase.getInstance().getReference("Users");
         str= FirebaseStorage.getInstance().getReference().child("Image");
+        reference= FirebaseDatabase.getInstance().getReference("Users");
+        user= FirebaseAuth.getInstance().getCurrentUser();
         userID= user.getUid();
+        inputName = findViewById(R.id.updatefName);
+        inputUsername = findViewById(R.id.updateUsername);
+        inputAddress = findViewById(R.id.updateAddress);
+        inputEmail = findViewById(R.id.updateEmail);
+
 
 
 
         reference.child(userID).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-                String image1= datasnapshot.child("myImage").getValue().toString();
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String image1= snapshot.child("myImage").getValue().toString();
                 Picasso.with(Editprofile.this)
                         .load(image1)
                         .resize(100, 100)
