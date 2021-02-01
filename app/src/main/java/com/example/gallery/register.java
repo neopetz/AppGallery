@@ -36,7 +36,7 @@ public class register extends AppCompatActivity implements View.OnClickListener 
     private TextView btnRegisterUser;
     private EditText textFullName, textEmail, textPassword, textPasswordConfirm;
     private FirebaseAuth mAuth;
-    String valFullName, valEmail, valPassword, valConfirmPassword,valUsername="none",valAddress="none",valNumber="none", myImage="https://firebasestorage.googleapis.com/v0/b/auth-12c84.appspot.com/o/pic.png?alt=media&token=c61beb24-7981-4de0-a8da-48690000b84b";
+    String valFullName, valEmail, valPassword, valConfirmPassword,valUsername="",valAddress="",valNumber="", myImage="https://firebasestorage.googleapis.com/v0/b/auth-12c84.appspot.com/o/255-2552596_anime-clipart-aesthetic-cute-korean-png.png?alt=media&token=35eb90ff-b239-4884-a49f-441902f7c4bd";
     LazyLoader lazyLoader;
     Timer timer;
 
@@ -128,10 +128,11 @@ public class register extends AppCompatActivity implements View.OnClickListener 
                 .addOnCompleteListener(task -> {
 
                     if (task.isSuccessful()) {
-                        User user = new User(valFullName, valEmail, valUsername, valAddress, valNumber, myImage);
+                        User user = new User(valFullName, valEmail, valUsername, valNumber, valAddress, myImage);
 
                         FirebaseDatabase.getInstance().getReference("Users")
                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                .child("Account")
                                 .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {

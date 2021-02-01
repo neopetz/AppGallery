@@ -74,13 +74,9 @@ public class profilefragment extends Fragment {
              }
         });
 
-         reference= FirebaseDatabase.getInstance().getReference("Users");
-         user= FirebaseAuth.getInstance().getCurrentUser();
-         userID= user.getUid();
 
 
-
-         reference.child(userID).addValueEventListener(new ValueEventListener() {
+         reference.child(userID).child("Account").addValueEventListener(new ValueEventListener() {
              @Override
              public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                  String image1= datasnapshot.child("myImage").getValue().toString();
@@ -107,7 +103,7 @@ public class profilefragment extends Fragment {
             @Override
                  public void onClick(View v) {
                 startActivity(new Intent(getActivity(), Editprofile.class));
-               
+
             }
          });
 
@@ -118,7 +114,7 @@ public class profilefragment extends Fragment {
 
 
     private void accountInformation(){
-         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+         reference.child(userID).child("Account").addListenerForSingleValueEvent(new ValueEventListener() {
              @Override
              public void onDataChange(@NonNull DataSnapshot snapshot) {
                  User userProfile = snapshot.getValue(User.class);
@@ -135,8 +131,6 @@ public class profilefragment extends Fragment {
                      ViewUsername.setText(usernameData);
                      ViewAddress.setText(addressData);
                      ViewNumber.setText(numberData);
-
-
                  }
              }
 
@@ -152,5 +146,5 @@ public class profilefragment extends Fragment {
     }
 
 
-    
+
 }
