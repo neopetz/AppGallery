@@ -75,7 +75,6 @@ public class profilefragment extends Fragment {
         });
 
 
-
          reference.child(userID).child("Account").addValueEventListener(new ValueEventListener() {
              @Override
              public void onDataChange(@NonNull DataSnapshot datasnapshot) {
@@ -91,12 +90,6 @@ public class profilefragment extends Fragment {
 
              }
          });
-
-
-
-
-
-
 
              btnUpdate=view.findViewById(R.id.editProfile);
             btnUpdate.setOnClickListener(new View.OnClickListener(){

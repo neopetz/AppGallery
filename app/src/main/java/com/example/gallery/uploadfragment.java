@@ -21,7 +21,8 @@ public class uploadfragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_uploadfragment, container, false);
 
-
+        Intent intent = new Intent(getActivity(), Upload_activity.class);
+        startActivity(intent);
 
         return view;
     }
