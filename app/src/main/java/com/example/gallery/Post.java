@@ -7,6 +7,7 @@
 //import android.os.Bundle;
 //import android.view.View;
 //import android.webkit.MimeTypeMap;
+//import android.widget.Button;
 //import android.widget.EditText;
 //import android.widget.ImageView;
 //import android.widget.TextView;
@@ -32,41 +33,34 @@
 //
 //import java.util.HashMap;
 //
-//public class Post extends AppCompatActivity {
+//public class Upload_activity extends AppCompatActivity {
 //
 //    Uri imageUri;
 //    String myUri = "";
 //    StorageTask uploadTask;
 //    StorageReference storageReference;
 //
-//    ImageView close, image_added;
-//    TextView post;
-//    EditText description;
+//
+//
 //    private String userID;
 //    private FirebaseUser user;
+//    private Button uploadBtn;
+//    private ImageView imageView;
 //
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState){
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.fragment_uploadfragment);
+//        setContentView(R.layout.activity_upload_activity);
 //
 //        user= FirebaseAuth.getInstance().getCurrentUser();
 //        userID= user.getUid();
-//        close = findViewById(R.id.close);
-//        image_added = findViewById(R.id.image_added);
-//        post = findViewById(R.id.post);
-//        description = findViewById(R.id.description);
+//        uploadBtn = findViewById(R.id.upload_btn);
+//        imageView = findViewById(R.id.imageView4);
 //        storageReference = FirebaseStorage.getInstance().getReference("posts");
 //
-//        close.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getSupportFragmentManager().beginTransaction()
-//                        .add(android.R.id.content, new uploadfragment ()).commit();
-//            }
-//        });
 //
-//        post.setOnClickListener(new View.OnClickListener() {
+//
+//        uploadBtn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                uploadImage();
@@ -76,7 +70,7 @@
 //
 //        CropImage.activity()
 //                .setAspectRatio(1,1)
-//                .start(Post.this);
+//                .start(Upload_activity.this);
 //
 //    }
 //
@@ -91,7 +85,7 @@
 //        progressDialog.show();
 //        if(imageUri !=null){
 //            StorageReference filereference = storageReference.child(System.currentTimeMillis()
-//            + "." + getFileExtension(imageUri));
+//                    + "." + getFileExtension(imageUri));
 //            uploadTask = filereference.putFile(imageUri);
 //            uploadTask.continueWithTask(new Continuation() {
 //                @Override
@@ -109,30 +103,29 @@
 //                        Uri downloadUri = task.getResult();
 //                        myUri = downloadUri.toString();
 //
-//                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+//                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Posted");
 //                        String postid = reference.push().getKey();
 //
 //                        HashMap<String, Object> hashMap = new HashMap<>();
 //                        hashMap.put("postid", postid);
-//                        hashMap.put("postimage",myUri);
-//                        hashMap.put("description", description.getText().toString());
+//                        hashMap.put("imageURL",myUri);
 //                        hashMap.put("Publisher", FirebaseAuth.getInstance().getCurrentUser().getUid());
-//
-//                        reference.child(userID).child("Account").child("Images").setValue(hashMap);
+//                        reference.push().child("Images").setValue(hashMap);
 //
 //                        progressDialog.dismiss();
-//                        getSupportFragmentManager().beginTransaction()
-//                                .add(android.R.id.content, new uploadfragment ()).commit();
+////                        getSupportFragmentManager().beginTransaction()
+////                                .add(android.R.id.content, new uploadfragment ()).commit();
+//                        Toast.makeText(Upload_activity.this, "Uploaded!", Toast.LENGTH_SHORT).show();
 //
 //
 //                    }else{
-//                        Toast.makeText(Post.this, "Failed", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(Upload_activity.this, "Failed", Toast.LENGTH_SHORT).show();
 //                    }
 //                }
 //            }).addOnFailureListener(new OnFailureListener() {
 //                @Override
 //                public void onFailure(@NonNull Exception e) {
-//                    Toast.makeText(Post.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(Upload_activity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 //                }
 //            });
 //        }else{
@@ -146,16 +139,15 @@
 //    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
 //
-//            if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
-//                CropImage.ActivityResult result = CropImage.getActivityResult(data);
-//                imageUri = result.getUri();
+//        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
+//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+//            imageUri = result.getUri();
+//            imageView.setImageURI(imageUri);
+//        }else{
+//            Toast.makeText(this,"Something gone wrong!",Toast.LENGTH_LONG).show();
+////                getSupportFragmentManager().beginTransaction()
+////                        .add(android.R.id.content, new uploadfragment ()).commit();
 //
-//                image_added.setImageURI(imageUri);
-//            }else{
-//                Toast.makeText(this,"Something gone wrong!",Toast.LENGTH_LONG).show();
-//                getSupportFragmentManager().beginTransaction()
-//                        .add(android.R.id.content, new uploadfragment ()).commit();
-//
-//            }
+//        }
 //    }
 //}

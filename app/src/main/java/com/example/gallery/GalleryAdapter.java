@@ -1,6 +1,7 @@
 package com.example.gallery;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,10 +43,9 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.galleryV
 
     @Override
     public void onBindViewHolder(@NonNull galleryViewAdapter holder, int position) {
-
+        
         final ProgressBar progressBar = holder.progressBar;
-
-    Glide.with(context).load(Images.get(position))
+         Glide.with(context).load(Images.get(position))
             .listener(new RequestListener<Drawable>() {
                 @Override
                 public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -60,7 +60,6 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.galleryV
             }).into(holder.imageView);
 
     }
-
 
 
     @Override
