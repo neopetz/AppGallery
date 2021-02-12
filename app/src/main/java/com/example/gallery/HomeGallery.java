@@ -36,7 +36,7 @@ public class HomeGallery extends AppCompatActivity {
                         fragment = new homefragment();
                         break;
                     case R.id.uploadFragment:
-                        fragment = new uploadfragment();
+                        fragment = new settingsfragment();
                         break;
                     case R.id.profileFragment:
                         fragment = new profilefragment();

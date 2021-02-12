@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -41,10 +42,6 @@ public class homefragment extends Fragment {
     String imgx;
     List<String> imageList = new ArrayList<>();
     List<String> img = new ArrayList<>();
-    FloatingActionsMenu floatingActionsMenu;
-
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,17 +72,15 @@ public class homefragment extends Fragment {
             }
         });
 
-
-    return view;
+        return view;
     }
-
-
 
 
     private void getConvoImage() {
         reference.child("Posted").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+
                 for (DataSnapshot child: datasnapshot.getChildren()) {
 
                     imgx = child.child("Images").child("imageURL").getValue().toString();
@@ -93,11 +88,11 @@ public class homefragment extends Fragment {
                     String url = child.getKey();
                     imageList.add(url);
                 }
+                Collections.reverse(img);
                 adapter = new GalleryAdapter(getContext(), img);
                 convoRecycler.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
                 convoRecycler.setHasFixedSize(true);
                 convoRecycler.setAdapter(adapter);
-
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -105,15 +100,6 @@ public class homefragment extends Fragment {
             }
         });
 
-
-
-
-
-
-
     }
-
-
-
 
 }

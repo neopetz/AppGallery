@@ -25,6 +25,10 @@
         <item name="android:fontFamily">@font/proximar</item>
     </style>
 
+    <style name="PreferencesTheme">
+        <item name="android:windowBackground">#FFFFFF</item>
+    </style>
+
 
 
 </resources>

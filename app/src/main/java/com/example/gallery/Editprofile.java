@@ -186,6 +186,7 @@ public class Editprofile extends AppCompatActivity{
             Uri changedp=data.getData();
             CropImage.activity(changedp)
                     .start(this);
+
         }
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
@@ -218,13 +219,6 @@ public class Editprofile extends AppCompatActivity{
             }
         }
     }
-
-
-
-
-
-
-
 
 
 }

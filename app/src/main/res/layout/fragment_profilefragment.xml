@@ -309,22 +309,22 @@
             app:layout_constraintTop_toBottomOf="@+id/ViewFullName"
             app:layout_constraintVertical_bias="1.0" />
 
-        <Button
-            android:id="@+id/buttonSignOut"
-            android:layout_width="88dp"
-            android:layout_height="29dp"
-            android:background="@drawable/button_bg1"
-            android:fontFamily="@font/proximar"
-            android:padding="0dp"
-            android:paddingBottom="10dp"
-            android:text="@string/logout"
-            android:textAllCaps="false"
-            android:textSize="14sp"
-            app:backgroundTint="@color/navcolor"
-            app:layout_constraintBottom_toTopOf="@+id/view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview" />
+<!--        <Button-->
+<!--            android:id="@+id/buttonSignOut"-->
+<!--            android:layout_width="88dp"-->
+<!--            android:layout_height="29dp"-->
+<!--            android:background="@drawable/button_bg1"-->
+<!--            android:fontFamily="@font/proximar"-->
+<!--            android:padding="0dp"-->
+<!--            android:paddingBottom="10dp"-->
+<!--            android:text="@string/logout"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textSize="14sp"-->
+<!--            app:backgroundTint="@color/navcolor"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/view"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textview" />-->
 
         <View
 

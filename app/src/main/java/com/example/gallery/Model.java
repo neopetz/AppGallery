@@ -2,6 +2,7 @@ package com.example.gallery;
 
 public class Model {
 
+
     private String imageURL;
     public Model(){
 

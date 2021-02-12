@@ -3,6 +3,9 @@ package com.example.gallery;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -13,6 +16,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,25 +35,26 @@ public class Upload_activity extends AppCompatActivity {
     private Button uploadBtn,showAllBtn;
     private ImageView imageView;
     private ProgressBar progressBar;
-    private DatabaseReference root;
-    private StorageReference reference = FirebaseStorage.getInstance().getReference();
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference();
+    private StorageReference reference = FirebaseStorage.getInstance().getReference("posts");
     private Uri imageUri;
     private String userID;
     private FirebaseUser user;
+    private TextView cancel;
+    Fragment fragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_activity);
 
-        user= FirebaseAuth.getInstance().getCurrentUser();
-        userID= user.getUid();
         uploadBtn = findViewById(R.id.upload_btn);
         imageView = findViewById(R.id.imageView4);
         progressBar = findViewById(R.id.progressBar);
+        cancel = findViewById(R.id.cancel);
+        user= FirebaseAuth.getInstance().getCurrentUser();
+        userID= user.getUid();
         progressBar.setVisibility(View.INVISIBLE);
-        root = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Posted");
-
 
         Intent galleryIntent = new Intent();
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
@@ -57,8 +62,6 @@ public class Upload_activity extends AppCompatActivity {
         startActivityForResult(galleryIntent,2);
 
 
-
-/*
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,19 +71,30 @@ public class Upload_activity extends AppCompatActivity {
                 startActivityForResult(galleryIntent,2);
             }
         });
-*/
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Upload_activity.this,HomeGallery.class));
+                finish();
+            }
+        });
+
         uploadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(imageUri != null){
                     uploadToFirebase(imageUri);
+                    imageUri=null;
                 }else{
                     Toast.makeText(Upload_activity.this, "Please Select Image", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -100,14 +114,15 @@ public class Upload_activity extends AppCompatActivity {
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        com.example.gallery.Model model = new Model(uri.toString());
+                        Model model = new Model(uri.toString());
                         // String modelId = root.push().getKey();
                         //root.child(modelId).setValue(model);
-                        root.push().child("Images").setValue(model);
+
+                        root.child("Users").child(userID).child("Posted").push().child("Images").setValue(model);
 
                         progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(Upload_activity.this, "Upload Successfully", Toast.LENGTH_SHORT).show();
-                        imageView.setImageResource(R.drawable.ic_image);
+                        startActivity(new Intent(Upload_activity.this,HomeGallery.class));
                     }
                 });
             }
@@ -129,5 +144,11 @@ public class Upload_activity extends AppCompatActivity {
         ContentResolver cr = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return  mime.getExtensionFromMimeType(cr.getType(mUri));
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        startActivity(new Intent(Upload_activity.this,HomeGallery.class));
     }
 }

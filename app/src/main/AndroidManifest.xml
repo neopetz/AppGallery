@@ -13,11 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".Post_Upload" >
-        </activity>
         <activity android:name=".CameraOpen" />
         <activity android:name=".Upload_activity" />
-        <activity android:name=".FullscreenActivity" />
         <activity android:name=".Editprofile" />
         <activity android:name=".HomeGallery" />
         <activity android:name=".resetpw" />
@@ -35,6 +32,7 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
+        <activity android:name=".FullscreenActivity" />
     </application>
 
 </manifest>
