@@ -29,6 +29,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.theartofdev.edmodo.cropper.CropImage;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Upload_activity extends AppCompatActivity {
 
@@ -41,7 +45,7 @@ public class Upload_activity extends AppCompatActivity {
     private String userID;
     private FirebaseUser user;
     private TextView cancel;
-    Fragment fragment = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,27 +60,14 @@ public class Upload_activity extends AppCompatActivity {
         userID= user.getUid();
         progressBar.setVisibility(View.INVISIBLE);
 
-        Intent galleryIntent = new Intent();
-        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-        galleryIntent.setType("image/*");
-        startActivityForResult(galleryIntent,2);
 
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent galleryIntent = new Intent();
-                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-                galleryIntent.setType("image/*");
-                startActivityForResult(galleryIntent,2);
-            }
-        });
+
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Upload_activity.this,HomeGallery.class));
-                finish();
             }
         });
 
@@ -92,6 +83,9 @@ public class Upload_activity extends AppCompatActivity {
             }
         });
 
+        CropImage.activity()
+                .setAspectRatio(1,1)
+                .start(Upload_activity.this);
 
     }
 
@@ -100,8 +94,9 @@ public class Upload_activity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==2 && resultCode == RESULT_OK && data != null){
-            imageUri = data.getData();
+        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            imageUri = result.getUri();
             imageView.setImageURI(imageUri);
         }
     }
@@ -117,12 +112,11 @@ public class Upload_activity extends AppCompatActivity {
                         Model model = new Model(uri.toString());
                         // String modelId = root.push().getKey();
                         //root.child(modelId).setValue(model);
-
                         root.child("Users").child(userID).child("Posted").push().child("Images").setValue(model);
-
                         progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(Upload_activity.this, "Upload Successfully", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(Upload_activity.this,HomeGallery.class));
+
                     }
                 });
             }
@@ -148,7 +142,6 @@ public class Upload_activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
         startActivity(new Intent(Upload_activity.this,HomeGallery.class));
     }
 }
