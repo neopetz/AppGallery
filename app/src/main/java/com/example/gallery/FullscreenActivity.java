@@ -3,9 +3,11 @@ package com.example.gallery;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -16,12 +18,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.Collection;
+
 public class FullscreenActivity extends AppCompatActivity {
     DatabaseReference reference;
     private String userID;
     private FirebaseUser user;
-    private ImageView imagePhoto;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,30 +33,39 @@ public class FullscreenActivity extends AppCompatActivity {
         user= FirebaseAuth.getInstance().getCurrentUser();
         userID= user.getUid();
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
-        imagePhoto = findViewById(R.id.imagePhoto);
 
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
         String imageURL = bundle.getString("IMAGES");
+        int position = bundle.getInt("POSITION");
 
         reference.child("Posted").addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+
+                String[] imageSlide = new String[(int) datasnapshot.getChildrenCount()];
+
+                int counter = imageSlide.length-1;
+
                 for (DataSnapshot child: datasnapshot.getChildren()) {
-                    if(imageURL.equals(child.child("Images").child("imageURL").getValue().toString())){
-                        Picasso.with(FullscreenActivity.this)
-                                .load(imageURL)
-                                .fit()
-                                .centerCrop()
-                                .into(imagePhoto);
-                    }
+
+                    imageSlide[counter] = child.child("Images").child("imageURL").getValue().toString();
+                    counter--;
+
                 }
+
+
+                ViewPager viewPager = findViewById(R.id.viewPager);
+                FullSizeAdapter imageAdapter = new FullSizeAdapter(FullscreenActivity.this,imageSlide);
+                viewPager.setAdapter(imageAdapter);
+                viewPager.setCurrentItem(position);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
     }
 }

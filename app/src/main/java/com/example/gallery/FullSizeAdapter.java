@@ -17,11 +17,11 @@ import java.util.ArrayList;
 
 public class FullSizeAdapter extends PagerAdapter {
 
-    Context context;
-    String[] imageURL = new String[100];
+    Context mContext;
+    String[] imageURL;
     LayoutInflater inflater;
     public FullSizeAdapter(Context context, String[] imageURL){
-        this.context = context;
+        this.mContext = context;
         this.imageURL = imageURL;
     }
     @Override
@@ -39,25 +39,29 @@ public class FullSizeAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
 
-        inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+/*        inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.full_item,null);
         ImageView imageView = v.findViewById(R.id.img);
         Glide.with(context).load(imageURL[position]).apply(new RequestOptions().centerInside())
                 .into(imageView);
         ViewPager viewPager = (ViewPager) container;
         viewPager.addView(v,0);
-        return v;
-
+        return v;*/
+        ImageView imageView = new ImageView(mContext);
+        Glide.with(mContext).load(imageURL[position]).apply(new RequestOptions().centerInside())
+                .into(imageView);
+        container.addView(imageView,0);
+        return imageView;
 
     }
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        container.removeView((ImageView) object);
 
-
-        ViewPager viewPager = (ViewPager) container;
+      /*  ViewPager viewPager = (ViewPager) container;
         View v = (View)object;
-        viewPager.removeView(v);
+        viewPager.removeView(v);*/
 
 
     }
