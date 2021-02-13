@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.Image;
@@ -38,10 +39,15 @@ import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Editprofile extends AppCompatActivity{
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
+
+public class Editprofile extends AppCompatActivity implements EasyPermissions.PermissionCallbacks{
 
     private ImageView changedp;
     private static final int pick=2;
@@ -100,13 +106,50 @@ public class Editprofile extends AppCompatActivity{
         });
 
         changedp.setOnClickListener(v -> {
+            Permission();
+        });
+
+    }
+
+    @AfterPermissionGranted(123)
+    private void Permission() {
+        String[] perms = {Manifest.permission.CAMERA};
+        if(EasyPermissions.hasPermissions(this, perms)){
             Intent gallery=new Intent();
             gallery.setType("image/*");
             gallery.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(gallery,pick);
-        });
+        }else{
+            EasyPermissions.requestPermissions(this,"We need permission!",
+                    123, perms);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+        Intent gallery=new Intent();
+        gallery.setType("image/*");
+        gallery.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(gallery,pick);
 
     }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        if(EasyPermissions.somePermissionPermanentlyDenied(this,perms)){
+            new AppSettingsDialog.Builder(this).build().show();
+        }
+    }
+
+
+
+
 
 
 
@@ -182,6 +225,12 @@ public class Editprofile extends AppCompatActivity{
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         lazyLoader.setVisibility(View.VISIBLE);
+
+        if(requestCode == AppSettingsDialog.DEFAULT_SETTINGS_REQ_CODE){
+
+        }
+
+
         if(requestCode==pick && resultCode==RESULT_OK && data!=null){
             Uri changedp=data.getData();
             CropImage.activity(changedp)
@@ -206,15 +255,20 @@ public class Editprofile extends AppCompatActivity{
                                     public void onComplete(@NonNull Task<Void> task) {
                                         lazyLoader.setVisibility(View.GONE);
                                         Toast.makeText(Editprofile.this, "Uploaded!", Toast.LENGTH_SHORT).show();
-
-
                                     }
+
                                 });
+
                             }
+
                         });
+
                     }
+
                 });
+
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                lazyLoader.setVisibility(View.VISIBLE);
                 Exception error = result.getError();
             }
         }

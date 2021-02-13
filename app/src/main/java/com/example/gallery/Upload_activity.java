@@ -3,12 +3,15 @@ package com.example.gallery;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +32,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.Timer;
@@ -45,6 +49,7 @@ public class Upload_activity extends AppCompatActivity {
     private String userID;
     private FirebaseUser user;
     private TextView cancel;
+
 
 
     @Override
@@ -68,6 +73,7 @@ public class Upload_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Upload_activity.this,HomeGallery.class));
+
             }
         });
 
@@ -84,7 +90,7 @@ public class Upload_activity extends AppCompatActivity {
         });
 
         CropImage.activity()
-                .setAspectRatio(1,1)
+                .setAspectRatio(2,2)
                 .start(Upload_activity.this);
 
     }
@@ -98,6 +104,8 @@ public class Upload_activity extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             imageUri = result.getUri();
             imageView.setImageURI(imageUri);
+
+
         }
     }
 
@@ -144,4 +152,12 @@ public class Upload_activity extends AppCompatActivity {
     public void onBackPressed() {
         startActivity(new Intent(Upload_activity.this,HomeGallery.class));
     }
+
+
+
+
+
 }
+
+
+

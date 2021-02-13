@@ -53,5 +53,9 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.1'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'com.getbase:floatingactionbutton:1.10.1'
+    //noinspection KtxExtensionAvailable
     implementation 'androidx.preference:preference:1.1.1'
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
+
    }

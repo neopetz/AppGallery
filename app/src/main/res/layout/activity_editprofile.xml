@@ -124,8 +124,8 @@
 
     <ImageView
         android:id="@+id/imageDP"
-        android:layout_width="109dp"
-        android:layout_height="81dp"
+        android:layout_width="134dp"
+        android:layout_height="137dp"
         android:src="@drawable/ic_fullname_focused"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
