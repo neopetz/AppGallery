@@ -32,9 +32,6 @@ public class Login extends AppCompatActivity implements  View.OnClickListener{
     LazyLoader lazyLoader;
     private FirebaseAuth mAuth;
     private Button login;
-    TextView nameApp;
-    ImageView logo;
-
 
 
     @Override
@@ -52,10 +49,6 @@ public class Login extends AppCompatActivity implements  View.OnClickListener{
         lazyLoader.addView(loader);
 
         gotoRegister = findViewById(R.id.gotoregister);
-        nameApp = findViewById(R.id.textView);
-        YoYo.with(Techniques.FadeIn).duration(3000).repeat(0).playOn(nameApp);
-        logo = findViewById(R.id.imageView2);
-        YoYo.with(Techniques.FadeIn).duration(1000).repeat(0).playOn(logo);
         gotoRegister.setOnClickListener(this);
         forgotPw = findViewById(R.id.resetpassword);
         forgotPw.setOnClickListener(this);

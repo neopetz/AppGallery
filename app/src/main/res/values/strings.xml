@@ -2,6 +2,7 @@
     <string name="app_name">Gallery</string>
     <string name="todo">TODO</string>
     <string name="app_gallery">GALLERY PLUS</string>
+    <string name="app_gallery2">Gallery Plus</string>
     <string name="ehint">Enter your Email</string>
     <string name="pwhint">Enter your Password</string>
     <string name="login">Login</string>

@@ -17,17 +17,13 @@ import com.daimajia.androidanimations.library.YoYo;
 public class MainActivity extends AppCompatActivity {
 
     private static int SPLASH_TIME_OUT = 3000;
-    TextView NameApp, wel;
     LazyLoader lazyLoader;
-    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        NameApp = findViewById(R.id.textView1);
-        wel = findViewById(R.id.textView);
-        imageView = findViewById(R.id.imageView);
+
 
         // PROGRESS BAR //
         lazyLoader = findViewById(R.id.progressBar);
@@ -36,10 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 ContextCompat.getColor(this, R.color.loader_selected));
         loader.setInterpolator(new LinearInterpolator());
         lazyLoader.addView(loader);
-        YoYo.with(Techniques.FadeIn).duration(1000).repeat(0).playOn(lazyLoader);
-        YoYo.with(Techniques.FadeIn).duration(1000).repeat(0).playOn(NameApp);
-        YoYo.with(Techniques.FadeIn).duration(1000).repeat(0).playOn(wel);
-        YoYo.with(Techniques.FadeIn).duration(1000).repeat(0).playOn(imageView);
+
 
 
         new Handler().postDelayed(new Runnable() {

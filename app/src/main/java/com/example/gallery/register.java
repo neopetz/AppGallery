@@ -75,6 +75,7 @@ public class register extends AppCompatActivity implements View.OnClickListener 
         switch (v.getId()){
             case R.id.back:
                 startActivity(new Intent(this, Login.class));
+                finish();
                 break;
             case R.id.Register:
                 Register();
@@ -172,5 +173,14 @@ public class register extends AppCompatActivity implements View.OnClickListener 
                     }
                 });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(register.this, Login.class));
+        finish();
+    }
+
+
 }
 

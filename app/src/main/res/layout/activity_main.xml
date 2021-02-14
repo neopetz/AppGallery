@@ -33,15 +33,15 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="133dp"
-        android:layout_height="86dp"
+        android:layout_width="161dp"
+        android:layout_height="115dp"
         android:layout_marginTop="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/logo" />
+        app:layout_constraintVertical_bias="0.032"
+        app:srcCompat="@drawable/logonew3" />
 
     <TextView
         android:id="@+id/textView"
@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.316" />
+        app:layout_constraintVertical_bias="0.252" />
 
     <TextView
         android:id="@+id/textView1"
@@ -63,12 +63,12 @@
         android:layout_marginTop="12dp"
         android:fontFamily="@font/proximat"
         android:text="@string/app_gallery"
-        android:textSize="25sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.022" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

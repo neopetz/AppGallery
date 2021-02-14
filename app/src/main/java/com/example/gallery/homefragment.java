@@ -72,13 +72,6 @@ public class homefragment extends Fragment implements EasyPermissions.Permission
 
 
         // FloatingActionButton -->
-        FloatingActionButton floatingbtnCamera = view.findViewById(R.id.floatCamera);
-        floatingbtnCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(),CameraOpen.class));
-            }
-        });
 
         FloatingActionButton floatingbtnGallery = view.findViewById(R.id.floatOpenGallery);
         floatingbtnGallery.setOnClickListener(new View.OnClickListener() {

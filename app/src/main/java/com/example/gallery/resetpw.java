@@ -86,7 +86,12 @@ public class resetpw extends AppCompatActivity {
     }
 
     private void backLOGIN() {
-        backLogin.setOnClickListener(v -> startActivity(new Intent(resetpw.this,Login.class)));
+        backLogin.setOnClickListener(v -> {
+            startActivity(new Intent(resetpw.this, Login.class));
+            finish();
+        });
+
+
     }
 
 

@@ -97,7 +97,7 @@ public class Upload_activity extends AppCompatActivity {
             public void onClick(View v) {
                 String Caption = caption.getText().toString();
                 if (Caption.isEmpty()) {
-                    caption.setError("Capstion is Required");
+                    caption.setError("Caption is required");
                     caption.requestFocus();
                     return;
                 }else {
@@ -155,7 +155,6 @@ public class Upload_activity extends AppCompatActivity {
                             hashMap.put("Date", getcurrentDate());
                             hashMap.put("Caption",caption.getText().toString());
                             root.child("Users").child(userID).child("Posted").push().child("Images").setValue(hashMap);
-                            Toast.makeText(Upload_activity.this, "TIME " + caption.getText().toString(), Toast.LENGTH_LONG).show();
                              lazyLoader.setVisibility(View.INVISIBLE);
                             Toast.makeText(Upload_activity.this, "Upload Successfully", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(Upload_activity.this, HomeGallery.class));
@@ -186,6 +185,7 @@ public class Upload_activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         startActivity(new Intent(Upload_activity.this,HomeGallery.class));
+        finish();
     }
 }
 
