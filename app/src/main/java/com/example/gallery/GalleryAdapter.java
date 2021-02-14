@@ -86,9 +86,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.galleryV
                     intent.putExtra("IMAGES",urlImage);
                     intent.putExtra("POSITION", position);
                     context.startActivity(intent);
-
-                    Toast.makeText(itemView.getContext(), "Position "+position, Toast.LENGTH_SHORT).show();
-
+//                    Toast.makeText(itemView.getContext(), "Position "+position, Toast.LENGTH_SHORT).show();
                 }
             });
         }

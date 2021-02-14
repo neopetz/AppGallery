@@ -230,7 +230,6 @@ public class Editprofile extends AppCompatActivity implements EasyPermissions.Pe
 
         }
 
-
         if(requestCode==pick && resultCode==RESULT_OK && data!=null){
             Uri changedp=data.getData();
             CropImage.activity(changedp)

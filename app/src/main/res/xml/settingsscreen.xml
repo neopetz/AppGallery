@@ -55,7 +55,12 @@
 
         <Preference
         android:title="@string/logout"
-        android:icon="@drawable/pref_logout"/>
+            android:icon="@drawable/pref_logout">
+            <intent android:action="android.intent.action.VIEW"
+                android:targetPackage="com.example.gallery"
+                android:targetClass="com.example.gallery.Login" />
+        </Preference>
+
     </PreferenceCategory>
 </PreferenceScreen>
 

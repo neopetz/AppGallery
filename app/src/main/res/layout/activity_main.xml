@@ -30,6 +30,7 @@
         app:lazyloader_secondDotColor="@color/darkgray2"
         app:lazyloader_thirdDotColor="@color/darkgray2" />
 
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="133dp"
@@ -48,7 +49,7 @@
         android:layout_height="59dp"
         android:fontFamily="@font/proximat"
         android:text="Welcome!"
-        android:textSize="40dp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,8 +62,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/proximat"
-        android:text="App Gallery"
-        android:textSize="25dp"
+        android:text="@string/app_gallery"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

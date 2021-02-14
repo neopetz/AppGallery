@@ -25,7 +25,7 @@
         android:id="@+id/updateUsername"
         android:layout_width="259dp"
         android:layout_height="40dp"
-        android:background="@drawable/c_input"
+        android:background="@drawable/c_input2"
         android:drawableStart="@drawable/c_uusername"
         android:drawablePadding="5dp"
         android:ems="10"
@@ -48,7 +48,7 @@
         android:layout_width="259dp"
         android:layout_height="40dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/c_input"
+        android:background="@drawable/c_input2"
         android:drawableStart="@drawable/c_phone"
         android:drawablePadding="5dp"
         android:ems="10"
@@ -71,7 +71,7 @@
         android:layout_width="259dp"
         android:layout_height="40dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/c_input"
+        android:background="@drawable/c_input2"
         android:drawableStart="@drawable/c_address"
         android:drawablePadding="5dp"
         android:ems="10"
@@ -91,8 +91,8 @@
 
     <Button
         android:id="@+id/btnUpdate"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
+        android:layout_width="110dp"
+        android:layout_height="45dp"
         android:backgroundTint="#40C58C"
         android:fontFamily="@font/proximar"
         android:padding="0dp"
@@ -106,11 +106,10 @@
         app:layout_constraintTop_toBottomOf="@+id/updateAddress"
         app:layout_constraintVertical_bias="0.222" />
 
-    <Button
+    <TextView
         android:id="@+id/btnchangepw"
-        android:layout_width="146dp"
-        android:layout_height="40dp"
-        android:backgroundTint="#FF5E5E"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/proximar"
         android:padding="0dp"
         android:text="@string/changepw"
@@ -118,9 +117,10 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnUpdate"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.144" />
 
     <ImageView
         android:id="@+id/imageDP"
@@ -170,7 +170,7 @@
         app:lazyloader_interpolator="@android:anim/decelerate_interpolator"
         app:lazyloader_secondDelayDur="200"
         app:lazyloader_secondDotColor="@color/darkgray2"
-        app:lazyloader_thirdDotColor="@color/darkgray2" />
+        app:lazyloader_thirdDotColor="@color/darkgray2"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.example.gallery;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -54,6 +56,7 @@ public class homefragment extends Fragment implements EasyPermissions.Permission
     String imgx;
     List<String> imageList = new ArrayList<>();
     List<String> img = new ArrayList<>();
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,6 +68,7 @@ public class homefragment extends Fragment implements EasyPermissions.Permission
         convoRecycler = view.findViewById(R.id.convoRecycler);
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
         getConvoImage();
+
 
 
         // FloatingActionButton -->
@@ -192,7 +196,6 @@ public class homefragment extends Fragment implements EasyPermissions.Permission
 
             }
         });
-
     }
 
 

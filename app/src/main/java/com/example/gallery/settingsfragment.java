@@ -31,6 +31,7 @@ public class settingsfragment extends Fragment  {
         view.setBackgroundColor(getResources().getColor(R.color.white));
 
 
+
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         preffragment Preffragment = new preffragment();
         fragmentTransaction.replace(R.id.fragthis, Preffragment);

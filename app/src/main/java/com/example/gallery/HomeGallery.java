@@ -21,7 +21,7 @@ public class HomeGallery extends AppCompatActivity {
 
          chipNavigationBar = findViewById(R.id.bottomNavMenu);
          chipNavigationBar.setItemSelected(R.id.menuFragment,true);
-       getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new homefragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new homefragment()).commit();
          bottomMenu();
 
     }

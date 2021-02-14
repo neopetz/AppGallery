@@ -10,11 +10,14 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.agrawalsuneet.dotsloader.loaders.CircularDotsLoader;
 import com.agrawalsuneet.dotsloader.loaders.LazyLoader;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -29,6 +32,8 @@ public class Login extends AppCompatActivity implements  View.OnClickListener{
     LazyLoader lazyLoader;
     private FirebaseAuth mAuth;
     private Button login;
+    TextView nameApp;
+    ImageView logo;
 
 
 
@@ -47,12 +52,15 @@ public class Login extends AppCompatActivity implements  View.OnClickListener{
         lazyLoader.addView(loader);
 
         gotoRegister = findViewById(R.id.gotoregister);
+        nameApp = findViewById(R.id.textView);
+        YoYo.with(Techniques.FadeIn).duration(3000).repeat(0).playOn(nameApp);
+        logo = findViewById(R.id.imageView2);
+        YoYo.with(Techniques.FadeIn).duration(1000).repeat(0).playOn(logo);
         gotoRegister.setOnClickListener(this);
         forgotPw = findViewById(R.id.resetpassword);
         forgotPw.setOnClickListener(this);
         login = findViewById(R.id.login_button);
         login.setOnClickListener(this);
-
         textEmail=findViewById(R.id.editTextEmailAddress);
         textPassword=findViewById(R.id.editTextPassword);
 
@@ -125,12 +133,6 @@ public class Login extends AppCompatActivity implements  View.OnClickListener{
 
             }
         });
-
-
-
-
-
-
 
     }
 

@@ -56,6 +56,8 @@ dependencies {
     //noinspection KtxExtensionAvailable
     implementation 'androidx.preference:preference:1.1.1'
     implementation 'pub.devrel:easypermissions:3.0.0'
+    implementation 'com.daimajia.androidanimations:library:2.4@aar'
+    implementation 'com.daimajia.easing:library:2.0@aar'
 
 
    }
