@@ -13,7 +13,7 @@
         android:layout_height="match_parent"/>
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -22,10 +22,10 @@
         android:text="Giraffe Selfie"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:layout_above="@+id/content" />
+        android:layout_above="@+id/stamp" />
 
     <TextView
-        android:id="@+id/content"
+        android:id="@+id/stamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dec 9, 2014 5:00pm"
