@@ -1,13 +1,15 @@
 package com.example.gallery;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.appcompat.view.ActionMode;
 import androidx.viewpager.widget.ViewPager;
-
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,12 +20,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
-
-import java.util.Collection;
 
 public class FullscreenActivity extends AppCompatActivity {
     DatabaseReference reference;
+    private ActionMode mActionMode;
     private String userID;
     private FirebaseUser user;
     private TextView stamp,content;
@@ -34,11 +34,14 @@ public class FullscreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
 
+
+
         user= FirebaseAuth.getInstance().getCurrentUser();
         userID= user.getUid();
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
         stamp = findViewById(R.id.stamp);
         content = findViewById(R.id.content);
+
 
 
         Bundle bundle = getIntent().getExtras();
@@ -102,7 +105,70 @@ public class FullscreenActivity extends AppCompatActivity {
             }
         });
 
+//        ViewPager viewPager = findViewById(R.id.viewPager);
+//        viewPager.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                if(mActionMode !=null){
+//                    return false;
+//                }
+//
+//
+//                mActionMode = startSupportActionMode(mActionModeCallBack);
+//
+//                return true;
+//            }
+//        });
+//
+//
+
+
+
     }
+//
+//    private ActionMode.Callback mActionModeCallBack = new ActionMode.Callback() {
+//        @Override
+//        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+//            mode.getMenuInflater().inflate(R.menu.deletemenu, menu);
+//            mode.setTitle("Choose option");
+//            return false;
+//        }
+//
+//        @Override
+//        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+//            return false;
+//        }
+//
+//        @Override
+//        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+//            switch(item.getItemId()){
+//                case R.id.deletebtn:
+//                    Toast.makeText(FullscreenActivity.this, "Delete button", Toast.LENGTH_LONG).show();
+//                    mode.finish();
+//                    return true;
+//
+//                case R.id.sharebtn:
+//                    Toast.makeText(FullscreenActivity.this, "SHARE button", Toast.LENGTH_LONG).show();
+//                    mode.finish();
+//                    return true;
+//                default:
+//                    return false;
+//
+//
+//            }
+//
+//        }
+//
+//        @Override
+//        public void onDestroyActionMode(ActionMode mode) {
+//            mActionMode = null;
+//
+//        }
+//    };
+
+
+
+
 
 
 }
