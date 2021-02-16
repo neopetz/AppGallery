@@ -1,9 +1,11 @@
 package com.example.gallery;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
@@ -74,8 +76,22 @@ public class register extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v){
         switch (v.getId()){
             case R.id.back:
-                startActivity(new Intent(this, Login.class));
-                finish();
+                AlertDialog.Builder alertdialog = new AlertDialog.Builder(register.this);
+                alertdialog.setMessage("Do you want to cancel the registration?").setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = alertdialog.create();
+                alert.show();
                 break;
             case R.id.Register:
                 Register();
@@ -114,12 +130,20 @@ public class register extends AppCompatActivity implements View.OnClickListener 
 
         if(valPassword.length()<6){
             textPassword.setError("Min password length should be 6 characters");
+            textPassword.setText("");
             textPassword.requestFocus();
             return;
         }
 
         if(!valConfirmPassword.equals(valPassword)){
             textPasswordConfirm.setError("Password did not Matched");
+            textPassword.setText("");
+            textPasswordConfirm.setText("");
+            textPasswordConfirm.requestFocus();
+            return;
+        }
+        if(valConfirmPassword.isEmpty()){
+            textPasswordConfirm.setError("Confirm password is empty!");
             textPasswordConfirm.requestFocus();
             return;
         }
@@ -176,9 +200,24 @@ public class register extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(register.this, Login.class));
-        finish();
+        ///   super.onBackPressed();
+        AlertDialog.Builder alertdialog = new AlertDialog.Builder(register.this);
+        alertdialog.setMessage("Do you want to cancel the registration?").setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alertdialog.create();
+        alert.show();
+
     }
 
 

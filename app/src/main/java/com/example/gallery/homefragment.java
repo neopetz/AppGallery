@@ -90,7 +90,7 @@ public class homefragment extends Fragment implements EasyPermissions.Permission
         if(EasyPermissions.hasPermissions(getActivity(), perms)){
             startActivity(new Intent(getContext(),Upload_activity.class));
         }else{
-            EasyPermissions.requestPermissions(this,"We need permission!",
+            EasyPermissions.requestPermissions(this,"Permission is required in order to use Gallery Plus",
                     123, perms);
         }
     }
@@ -180,12 +180,13 @@ public class homefragment extends Fragment implements EasyPermissions.Permission
                 }
                 Collections.reverse(img);
                 adapter = new GalleryAdapter(getContext(), img);
-                convoRecycler.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
+                convoRecycler.setLayoutManager(new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false));
                 convoRecycler.setHasFixedSize(true);
                 convoRecycler.setAdapter(adapter);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), ""+error.getMessage(), Toast.LENGTH_LONG).show();
 
             }
         });

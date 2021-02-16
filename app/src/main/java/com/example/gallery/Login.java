@@ -1,8 +1,11 @@
 package com.example.gallery;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -99,11 +102,7 @@ public class Login extends AppCompatActivity implements  View.OnClickListener{
             textPassword.requestFocus();
             return;
         }
-        if (valPassword.length() < 6) {
-            textPassword.setError("Min password length should be 6 characters");
-            textPassword.requestFocus();
-            return;
-        }
+
         lazyLoader.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(valEmail,valPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -119,7 +118,9 @@ public class Login extends AppCompatActivity implements  View.OnClickListener{
                         Toast.makeText(Login.this,"Check your email to verify your account!",Toast.LENGTH_LONG).show();
                     }
                 }else{
-                    Toast.makeText(Login.this,"Email or Password did not match!",Toast.LENGTH_LONG).show();
+                    textPassword.setText("");
+                    textPassword.setError("Password is incorrect");
+                    textPassword.requestFocus();
                 }
                 lazyLoader.setVisibility(View.GONE);
 
@@ -130,11 +131,29 @@ public class Login extends AppCompatActivity implements  View.OnClickListener{
     }
 
 
+    @Override
+    public void onBackPressed() {
+     ///   super.onBackPressed();
+        AlertDialog.Builder alertdialog = new AlertDialog.Builder(Login.this);
+        alertdialog.setMessage("Do want to exit?").setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alertdialog.create();
+        alert.show();
 
-
-
-
+    }
 
 
 
 }
+

@@ -76,9 +76,10 @@ public class profilefragment extends Fragment {
                          .centerCrop()
                          .into(changedp);
              }
+
              @Override
              public void onCancelled(@NonNull DatabaseError error) {
-
+                    Toast.makeText(getContext(), ""+error.getMessage(), Toast.LENGTH_LONG).show();
              }
          });
 

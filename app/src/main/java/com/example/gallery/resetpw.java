@@ -1,9 +1,11 @@
 package com.example.gallery;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -87,12 +89,53 @@ public class resetpw extends AppCompatActivity {
 
     private void backLOGIN() {
         backLogin.setOnClickListener(v -> {
-            startActivity(new Intent(resetpw.this, Login.class));
-            finish();
+            AlertDialog.Builder alertdialog = new AlertDialog.Builder(resetpw.this);
+            alertdialog.setMessage("Are you sure you want to cancel?").setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = alertdialog.create();
+            alert.show();
+
         });
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        ///   super.onBackPressed();
+        AlertDialog.Builder alertdialog = new AlertDialog.Builder(resetpw.this);
+        alertdialog.setMessage("Are you sure you want to cancel?").setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alertdialog.create();
+        alert.show();
+
+    }
+
+
+
+
 
 
 }

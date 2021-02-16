@@ -2,17 +2,20 @@ package com.example.gallery;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
@@ -23,8 +26,11 @@ import android.widget.Toast;
 
 import com.agrawalsuneet.dotsloader.loaders.LazyLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -56,6 +62,7 @@ public class Editprofile extends AppCompatActivity implements EasyPermissions.Pe
     private StorageReference str;
     private DatabaseReference reference;
     private String userID;
+    TextView btnchangepw;
     private FirebaseUser user;
     private DatabaseReference db;
     private EditText inputAddress, inputUsername, inputPhone;
@@ -73,6 +80,7 @@ public class Editprofile extends AppCompatActivity implements EasyPermissions.Pe
         user= FirebaseAuth.getInstance().getCurrentUser();
         userID= user.getUid();
         inputUsername = findViewById(R.id.updateUsername);
+        btnchangepw = findViewById(R.id.btnchangePW);
         inputPhone = findViewById(R.id.updatePhone);
         btnUpdate = findViewById(R.id.btnUpdate);
         inputAddress = findViewById(R.id.updateAddress);
@@ -109,7 +117,121 @@ public class Editprofile extends AppCompatActivity implements EasyPermissions.Pe
             Permission();
         });
 
+
+        btnchangepw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                View view = LayoutInflater.from(getApplication()).inflate(R.layout.changepw_diaglog, null);
+                EditText currentpw = view.findViewById(R.id.currentpassword);
+                EditText newpassword = view.findViewById(R.id.newpassword);
+                EditText newpassword2 = view.findViewById(R.id.newpassword2);
+                Button btnupdate = view.findViewById(R.id.btnchangePassword);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(Editprofile.this);
+                builder.setView(view);
+                AlertDialog dialog = builder.create();
+                builder.create().show();
+
+
+                btnupdate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String oldpw = currentpw.getText().toString().trim();
+                        String new_password = newpassword.getText().toString().trim();
+                        String new_password2 = newpassword2.getText().toString().trim();
+                        EditText newpwx = findViewById(R.id.newpassword2);
+                        if(oldpw.isEmpty()){
+                            currentpw.setError("Enter your current password");
+                            currentpw.setText("");
+                            newpassword.setText("");
+                            newpassword2.setText("");
+                            currentpw.requestFocus();
+                            return;
+                        }
+                        if(new_password.isEmpty()){
+                            newpassword.setError("Enter your new password");
+                            currentpw.setText("");
+                            newpassword.setText("");
+                            newpassword2.setText("");
+                            newpassword.requestFocus();
+                            return;
+                        }
+                        if(new_password2.isEmpty()){
+                            newpassword2.setError("Enter your new password");
+                            currentpw.setText("");
+                            newpassword.setText("");
+                            newpassword2.setText("");
+                            newpassword2.requestFocus();
+                            return;
+                        }
+                        if(new_password.length()<6){
+                            newpassword.setError("Min password length should be 6 characters");
+                            currentpw.setText("");
+                            newpassword.setText("");
+                            newpassword2.setText("");
+                            newpassword.requestFocus();
+                            return;
+                        }
+                        if(!new_password2.equals(new_password)){
+                            newpassword2.setError("Password did not Matched");
+                            currentpw.setText("");
+                            newpassword.setText("");
+                            newpassword2.setText("");
+                            newpassword2.requestFocus();
+                            return;
+                        }
+                        dialog.dismiss();
+                        updatePassowrd(oldpw,new_password, new_password2);
+
+                    }
+                });
+            }
+        });
+
     }
+
+    private void updatePassowrd(String oldpw, String new_password, String new_password2) {
+
+        AuthCredential authCredential = EmailAuthProvider.getCredential(user.getEmail(), oldpw);
+        user.reauthenticate(authCredential)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                        user.updatePassword(new_password2)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(Editprofile.this, "Password updated", Toast.LENGTH_LONG).show();
+
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(Editprofile.this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
+                                        return;
+
+                                    }
+                                });
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        View view = LayoutInflater.from(getApplication()).inflate(R.layout.changepw_diaglog, null);
+                        EditText currentpw = view.findViewById(R.id.currentpassword);
+                       // Toast.makeText(getApplication(), ""+e.getMessage(), Toast.LENGTH_LONG).show();
+                        currentpw.setError("Enter your new password");
+                        currentpw.requestFocus();
+                        return;
+                    }
+                });
+
+    }
+
 
     @AfterPermissionGranted(123)
     private void Permission() {
@@ -146,10 +268,6 @@ public class Editprofile extends AppCompatActivity implements EasyPermissions.Pe
             new AppSettingsDialog.Builder(this).build().show();
         }
     }
-
-
-
-
 
 
 

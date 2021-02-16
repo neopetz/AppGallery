@@ -20,11 +20,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
-
         android:orientation="vertical">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
+            android:elevation="0dp"
+            app:cardElevation="0dp"
             android:layout_height="wrap_content">
 
             <LinearLayout
@@ -41,6 +42,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
+                    android:elevation="0dp"
                     android:background="@color/darkgray3"
 
                     />
