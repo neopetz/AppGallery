@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,67 +8,73 @@
     tools:context=".FullscreenActivity"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:layout_marginTop="15dp"
-        android:gravity="right"
-        android:orientation="horizontal">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_share"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="10dp"
         android:id="@+id/shareebtn"
-        />
-
-    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_delete"
+        android:layout_marginEnd="28dp"
+        android:src="@drawable/ic_share"
+        app:layout_constraintBottom_toBottomOf="@+id/deletebtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
         android:id="@+id/deletebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="268dp"
+        android:layout_marginTop="24dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:layout_marginEnd="15dp"
-        android:layout_toLeftOf="@id/shareebtn"
-        />
-
-
-</RelativeLayout>
+        android:src="@drawable/ic_delete"
+        app:layout_constraintEnd_toStartOf="@+id/shareebtn"
+        app:layout_constraintHorizontal_bias="0.671"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
-        android:layout_gravity="center"
-        android:layout_marginTop="70dp"
         android:layout_width="match_parent"
-        android:layout_height="400dp"/>
+        android:layout_height="400dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deletebtn"
+        app:layout_constraintVertical_bias="0.15" />
 
     <TextView
         android:id="@+id/content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/proximab"
+        android:maxLength="35"
+        android:text="qweqweqwe"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:maxLength="35"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager" />
 
     <TextView
         android:id="@+id/stamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/proximar"
+        android:text="sadasd"
         android:textColor="@color/darkgray3"
         android:textSize="12sp"
-        android:fontFamily="@font/proximar"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"/>
+        app:layout_constraintEnd_toEndOf="@+id/content"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/content"
+        app:layout_constraintTop_toBottomOf="@+id/content" />
 
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
