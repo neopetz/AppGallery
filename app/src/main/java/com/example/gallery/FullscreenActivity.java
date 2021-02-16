@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,7 @@ public class FullscreenActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
         stamp = findViewById(R.id.stamp);
         content = findViewById(R.id.content);
+
 
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
@@ -101,4 +103,6 @@ public class FullscreenActivity extends AppCompatActivity {
         });
 
     }
+
+
 }

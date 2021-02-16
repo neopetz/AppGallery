@@ -90,7 +90,7 @@ public class homefragment extends Fragment implements EasyPermissions.Permission
         if(EasyPermissions.hasPermissions(getActivity(), perms)){
             startActivity(new Intent(getContext(),Upload_activity.class));
         }else{
-            EasyPermissions.requestPermissions(this,"We need permission!",
+            EasyPermissions.requestPermissions(this,"Permission is required in order to use Gallery Plus",
                     123, perms);
         }
     }

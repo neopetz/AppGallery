@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="25dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/proximab"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:textColor="#B0000000"
+        android:textAlignment="center"
+        android:text="@string/change_password"/>
+
+    <EditText
+        android:id="@+id/currentpassword"
+        android:layout_width="259dp"
+        android:layout_height="40dp"
+        android:background="@drawable/c_input2"
+        android:drawableStart="@drawable/c_lock2"
+        android:drawablePadding="7dp"
+        android:ems="10"
+        android:maxLength="50"
+        android:fontFamily="@font/proximar"
+        android:hint="@string/current_passowrd"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:layout_marginTop="20dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14sp"
+        android:layout_gravity="center"
+         />
+    <EditText
+        android:id="@+id/newpassword"
+        android:layout_width="259dp"
+        android:layout_height="40dp"
+        android:background="@drawable/c_input2"
+        android:drawableStart="@drawable/c_lock2"
+        android:drawablePadding="7dp"
+        android:ems="10"
+        android:maxLength="50"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/proximar"
+        android:hint="@string/new_password"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14sp"
+        android:layout_gravity="center"
+        />
+    <EditText
+        android:id="@+id/newpassword2"
+        android:layout_width="259dp"
+        android:layout_height="40dp"
+        android:background="@drawable/c_input2"
+        android:drawableStart="@drawable/c_lock2"
+        android:layout_marginTop="10dp"
+        android:drawablePadding="7dp"
+        android:ems="10"
+        android:maxLength="50"
+        android:fontFamily="@font/proximar"
+        android:hint="@string/confirm_password"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14sp"
+        android:layout_gravity="center"
+        />
+
+    <Button
+        android:id="@+id/btnchangePassword"
+        android:layout_width="107dp"
+        android:layout_height="37dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="#DD000000"
+        android:fontFamily="@font/proximar"
+        android:text="@string/updatee"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:backgroundTint="@null" />
+
+
+</LinearLayout>

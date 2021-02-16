@@ -13,6 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+
 import java.util.ArrayList;
 
 public class FullSizeAdapter extends PagerAdapter {
@@ -47,6 +48,7 @@ public class FullSizeAdapter extends PagerAdapter {
         ViewPager viewPager = (ViewPager) container;
         viewPager.addView(v,0);
         return v;*/
+
         ImageView imageView = new ImageView(mContext);
         Glide.with(mContext).load(imageURL[position]).apply(new RequestOptions().centerInside())
                 .into(imageView);
