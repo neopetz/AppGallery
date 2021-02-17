@@ -2,15 +2,21 @@ package com.example.gallery;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.viewpager.widget.ViewPager;
+
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +33,7 @@ public class FullscreenActivity extends AppCompatActivity {
     private String userID;
     private FirebaseUser user;
     private TextView stamp,content;
-   // Button deletebtn;
+    private ImageView deleteBtn;
 
 
 
@@ -43,7 +49,7 @@ public class FullscreenActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
         stamp = findViewById(R.id.stamp);
         content = findViewById(R.id.content);
-//        deletebtn = findViewById(R.id.deletebtn);
+        deleteBtn = findViewById(R.id.deletebtn);
 
 
 
@@ -82,7 +88,12 @@ public class FullscreenActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(position);
                 content.setText(con[position]);
                 stamp.setText(time[position]);
-
+                String picData = imageSlide[position];
+                try {
+                    deleteFunction(picData);
+                }catch (Exception e){
+                    Toast.makeText(FullscreenActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+                }
                 viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                     @Override
                     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -93,6 +104,14 @@ public class FullscreenActivity extends AppCompatActivity {
                         //Toast.makeText(FullscreenActivity.this, ""+position, Toast.LENGTH_SHORT).show();
                         content.setText(con[position]);
                         stamp.setText(time[position]);
+                        String picData = imageSlide[position];
+                        try {
+                            deleteFunction(picData);
+                        }catch (Exception e){
+                            Toast.makeText(FullscreenActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+                        }
+
+
                     }
 
                     @Override
@@ -107,6 +126,8 @@ public class FullscreenActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 //        ViewPager viewPager = findViewById(R.id.viewPager);
 //        viewPager.setOnTouchListener(new View.OnTouchListener() {
@@ -128,6 +149,62 @@ public class FullscreenActivity extends AppCompatActivity {
 
 
     }
+
+    public void deleteFunction(String picData){
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder alertdialog = new AlertDialog.Builder(FullscreenActivity.this);
+                alertdialog.setMessage("Are you sure want to Delete?").setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                reference.child("Posted").addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        for(DataSnapshot child: snapshot.getChildren()) {
+                                            String valPicData = child.child("Images").child("imageURL").getValue().toString();
+                                            if(picData.equals(valPicData)){
+                                                String key = child.getKey();
+                                                reference.child("Posted").child(key).removeValue();
+                                                new Handler().postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        startActivity(new Intent(FullscreenActivity.this, HomeGallery.class));
+                                                        finish();
+                                                    }
+                                                }, 1);
+                                            }
+
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
+
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = alertdialog.create();
+                alert.show();
+
+            }
+        });
+
+    }
+
+
+
 //
 //    private ActionMode.Callback mActionModeCallBack = new ActionMode.Callback() {
 //        @Override
