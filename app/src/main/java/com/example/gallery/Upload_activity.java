@@ -49,7 +49,7 @@ import java.util.TimerTask;
 
 public class Upload_activity extends AppCompatActivity {
 
-    private Button uploadBtn,showAllBtn;
+    private TextView uploadBtn;
     private ImageView imageView;
 //    private ProgressBar progressBar;
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference();

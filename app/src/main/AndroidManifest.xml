@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_changepw"></activity>
+        <activity android:name=".Activity_developer"></activity>
+        <activity android:name=".activity_changepw" />
         <activity android:name=".CameraOpen" />
         <activity android:name=".Upload_activity" />
         <activity android:name=".Editprofile" />
