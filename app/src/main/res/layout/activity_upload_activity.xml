@@ -8,6 +8,7 @@
     tools:context=".Upload_activity">
 
     <RelativeLayout
+        android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shadow1"
@@ -40,7 +41,23 @@
     </RelativeLayout>
 
 
-
+    <EditText
+        android:id="@+id/caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:background="@drawable/c_input3"
+        android:fontFamily="@font/proximar"
+        android:gravity="start"
+        android:hint="Caption"
+        android:padding="5dp"
+        android:lines="4"
+        android:maxLines="4"
+        android:maxLength="20"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:layout_below="@id/layout"
+        />
 
 
 
@@ -48,8 +65,8 @@
         android:id="@+id/imageView4"
         android:layout_width="400dp"
         android:layout_height="400dp"
-        android:layout_marginTop="8dp"
         android:layout_centerInParent="true"
+        android:layout_below="@id/caption"
         android:src="@drawable/ic_image" />
 
 
@@ -77,24 +94,6 @@
 
 
 
-    <EditText
-        android:id="@+id/caption"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="6dp"
-        android:background="@drawable/c_input3"
-        android:fontFamily="@font/proximar"
-        android:layout_marginTop="15dp"
-        android:gravity="start"
-        android:hint="Caption"
-        android:padding="5dp"
-        android:lines="4"
-        android:maxLines="4"
-        android:maxLength="200"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        android:layout_above="@id/imageView4"
 
-        />
 
 </RelativeLayout>

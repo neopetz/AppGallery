@@ -118,9 +118,7 @@ public class Login extends AppCompatActivity implements  View.OnClickListener{
                         Toast.makeText(Login.this,"Check your email to verify your account!",Toast.LENGTH_LONG).show();
                     }
                 }else{
-                    textPassword.setText("");
-                    textPassword.setError("Password is incorrect");
-                    textPassword.requestFocus();
+                    Toast.makeText(Login.this,"Email or Password is Incorrect!",Toast.LENGTH_LONG).show();
                 }
                 lazyLoader.setVisibility(View.GONE);
 

@@ -20,7 +20,6 @@ public class FullSizeAdapter extends PagerAdapter {
 
     Context mContext;
     String[] imageURL;
-    LayoutInflater inflater;
     public FullSizeAdapter(Context context, String[] imageURL){
         this.mContext = context;
         this.imageURL = imageURL;
