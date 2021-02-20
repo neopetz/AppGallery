@@ -39,8 +39,8 @@
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.162"
-        app:srcCompat="@drawable/flash1" />
+        app:layout_constraintVertical_bias="0.132"
+        app:srcCompat="@drawable/logo_noshadow" />
 
     <TextView
         android:id="@+id/textView"
@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.031" />
 
     <EditText
         android:id="@+id/editTextEmailAddress"

@@ -36,14 +36,14 @@
         android:layout_width="201dp"
         android:layout_height="176dp"
         android:layout_marginTop="15dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/flash1"
-        android:contentDescription="@string/todo" />
+        app:srcCompat="@drawable/logo_noshadow" />
 
     <TextView
         android:id="@+id/textView"
