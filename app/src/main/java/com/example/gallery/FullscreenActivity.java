@@ -124,6 +124,8 @@ public class FullscreenActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+                Toast.makeText(FullscreenActivity.this, "DATABASE ERROR ++ "+error.getMessage(), Toast.LENGTH_LONG).show();
+
             }
         });
 
@@ -156,7 +158,7 @@ public class FullscreenActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 AlertDialog.Builder alertdialog = new AlertDialog.Builder(FullscreenActivity.this);
-                alertdialog.setMessage("Are you sure want to Delete?").setCancelable(false)
+                alertdialog.setMessage("Are you sure you want to delete this image?").setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -182,6 +184,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
                                     @Override
                                     public void onCancelled(@NonNull DatabaseError error) {
+
 
                                     }
                                 });

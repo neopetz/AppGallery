@@ -95,6 +95,7 @@
     <string name="confirm_password">Confirm password</string>
     <string name="new_password">New password</string>
     <string name="updatee">Update</string>
+    <string name="welcome">Welcome!</string>
 
 
 </resources>

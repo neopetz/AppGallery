@@ -10,6 +10,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class settingsfragment extends Fragment  {
 
 
 
+
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         preffragment Preffragment = new preffragment();
         fragmentTransaction.replace(R.id.fragthis, Preffragment);
@@ -40,7 +42,6 @@ public class settingsfragment extends Fragment  {
         return view;
 
     }
-
 
 
 

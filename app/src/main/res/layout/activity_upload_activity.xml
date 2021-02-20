@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,33 +7,69 @@
     android:background="@color/white"
     tools:context=".Upload_activity">
 
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shadow1"
+        android:elevation="5dp"
+        >
+    <TextView
+        android:id="@+id/upload_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/proximar"
+        android:text="POST"
+        android:textAlignment="center"
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="20dp"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/ic_close"
+
+        />
+    </RelativeLayout>
+
+
+    <EditText
+        android:id="@+id/caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:background="@drawable/c_input3"
+        android:fontFamily="@font/proximar"
+        android:gravity="start"
+        android:hint="Caption"
+        android:padding="5dp"
+        android:lines="4"
+        android:maxLines="4"
+        android:maxLength="20"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:layout_below="@id/layout"
+        />
+
+
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="400dp"
         android:layout_height="400dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/ic_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cancel" />
+        android:layout_centerInParent="true"
+        android:layout_below="@id/caption"
+        android:src="@drawable/ic_image" />
 
-    <Button
-        android:id="@+id/upload_btn"
-        android:layout_width="107dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="24dp"
-        android:background="@color/colorPrimary"
-        android:fontFamily="@font/proximar"
-        android:text="Upload"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:backgroundTint="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caption" />
+
 
     <com.agrawalsuneet.dotsloader.loaders.LazyLoader
         android:id="@+id/progressBar"
@@ -41,11 +77,7 @@
         android:layout_height="21dp"
         android:layout_margin="20dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.491"
+        android:layout_centerInParent="true"
         app:lazyloader_animDur="400"
         app:lazyloader_dotsDist="2dp"
         app:lazyloader_dotsRadius="5dp"
@@ -56,48 +88,8 @@
         app:lazyloader_secondDotColor="@color/colorPrimary"
         app:lazyloader_thirdDotColor="@color/colorPrimary" />
 
-    <TextView
-        android:id="@+id/cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/ic_close"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.041"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/caption"
-        android:layout_width="258dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/c_input2"
-        android:fontFamily="@font/proximar"
-        android:hint="Caption"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
-    <TextView
-        android:id="@+id/chooseImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:fontFamily="@font/proximar"
-        android:text="Choose another Image"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upload_btn"
-        app:layout_constraintVertical_bias="0.184" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

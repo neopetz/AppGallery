@@ -27,6 +27,16 @@
          android:summary="@string/summary_about" />
 
         <Preference
+            android:key="aboutdevelopers"
+            android:icon="@drawable/ic_outline_precision_manufacturing_24"
+            android:title="About Developers" >
+            <intent android:action="android.intent.action.VIEW"
+                android:targetPackage="com.example.gallery"
+                android:targetClass="com.example.gallery.Activity_developer" />
+
+        </Preference>
+
+        <Preference
          android:key="@string/key_send_feedback"
          android:summary="@string/summary_support"
          android:icon="@drawable/pref_feedback2"

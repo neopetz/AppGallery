@@ -13,11 +13,12 @@
         android:padding="1dp">
 
          <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        app:layout_constraintDimensionRatio="H,1:1"
-        android:scaleType="centerCrop"
-        android:id="@+id/imageView"/>
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintDimensionRatio="H,1:1"
+            android:scaleType="centerCrop"
+            android:elevation="0dp"
+            android:id="@+id/imageView"/>
 
         <ProgressBar
             android:layout_width="wrap_content"
