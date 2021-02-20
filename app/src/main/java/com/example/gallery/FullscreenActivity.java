@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -86,14 +87,17 @@ public class FullscreenActivity extends AppCompatActivity {
                 FullSizeAdapter imageAdapter = new FullSizeAdapter(FullscreenActivity.this,imageSlide);
                 viewPager.setAdapter(imageAdapter);
                 viewPager.setCurrentItem(position);
-                content.setText(con[position]);
-                stamp.setText(time[position]);
+
                 String picData = imageSlide[position];
                 try {
-                    deleteFunction(picData);
+                    content.setText(con[position]);
+                    stamp.setText(time[position]);
+                     deleteFunction(picData);
                 }catch (Exception e){
-                    Toast.makeText(FullscreenActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FullscreenActivity.this, "ERROR: "+e, Toast.LENGTH_SHORT).show();
                 }
+
+
                 viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                     @Override
                     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -101,16 +105,14 @@ public class FullscreenActivity extends AppCompatActivity {
                     }
                     @Override
                     public void onPageSelected(int position) {
-                        //Toast.makeText(FullscreenActivity.this, ""+position, Toast.LENGTH_SHORT).show();
-                        content.setText(con[position]);
-                        stamp.setText(time[position]);
-                        String picData = imageSlide[position];
                         try {
+                            content.setText(con[position]);
+                            stamp.setText(time[position]);
+                            String picData = imageSlide[position];
                             deleteFunction(picData);
                         }catch (Exception e){
-                            Toast.makeText(FullscreenActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FullscreenActivity.this, "ERROR: "+e, Toast.LENGTH_SHORT).show();
                         }
-
 
                     }
 
@@ -128,26 +130,6 @@ public class FullscreenActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-//        ViewPager viewPager = findViewById(R.id.viewPager);
-//        viewPager.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                if(mActionMode !=null){
-//                    return false;
-//                }
-//
-//
-//                mActionMode = startSupportActionMode(mActionModeCallBack);
-//
-//                return true;
-//            }
-//        });
-//
-//
-
 
 
     }
@@ -170,16 +152,13 @@ public class FullscreenActivity extends AppCompatActivity {
                                             if(picData.equals(valPicData)){
                                                 String key = child.getKey();
                                                 reference.child("Posted").child(key).removeValue();
-                                                new Handler().postDelayed(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        startActivity(new Intent(FullscreenActivity.this, HomeGallery.class));
-                                                        finish();
-                                                    }
-                                                }, 1);
+                                                Toast.makeText(FullscreenActivity.this, "DONE", Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(FullscreenActivity.this,HomeGallery.class));
+                                                finish();
                                             }
 
                                         }
+
                                     }
 
                                     @Override
